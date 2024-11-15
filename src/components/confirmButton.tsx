@@ -14,13 +14,16 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./alertDialog"
+import React from "react";
 
 
 
 const targetLocation = { lat: 43.7861633, lng: -79.1880963 }; // The coordinate to compare against
 
 const CheckDistanceButton: React.FC = () => {
-  const [open, setOpen] = useState(false);
+
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [openFail, setOpenFail] = useState(false);
   const { markerPosition, addAttempt, maxAttempts, attempts, isSuccessful } = useMapContext();
   const calculateDistance = (
     lat1: number,
@@ -54,25 +57,43 @@ const CheckDistanceButton: React.FC = () => {
     addAttempt(distance);
 
     if (distance <= 20) {
-      setOpen(true);
+      setTimeout(() => setOpenSuccess(true), 500);
     } else if (attempts.length === maxAttempts - 1) {
-      setTimeout(() => alert("Better luck next time :("), 1000);
+      setTimeout(() => setOpenFail(true), 500);
     }
   };
 
 
+  
+
+
   return (
     <div>
-      <AlertDialog open={open} onOpenChange={setOpen}>
+      {/* Success pop-up */}
+      <AlertDialog open={openSuccess} onOpenChange={setOpenSuccess}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>You got it!</AlertDialogTitle>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogAction onClick={() => setOpen(false)}>OK</AlertDialogAction>
+            <AlertDialogAction onClick={() => setOpenSuccess(false)}>OK</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Fail pop-up */}
+      <AlertDialog open={openFail} onOpenChange={setOpenFail}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Better luck next time!</AlertDialogTitle>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={() => setOpenFail(false)}>OK</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Check distance */}
       <Button
         onClick={handleCheckDistance}
         disabled={attempts.length >= maxAttempts || isSuccessful}

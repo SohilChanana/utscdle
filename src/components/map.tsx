@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { useMapContext } from "@/hooks/mapProvider";
 
 const MapComponent = () => {
-  const { markerPosition, setMarkerPosition } = useMapContext();
+  const { markerPosition, setMarkerPosition, maxAttempts, attempts, isSuccessful } = useMapContext();
   const mapCenter = useRef({ lat: 43.78312, lng: -79.1870963 });
   const zoom = 18;
 
@@ -36,6 +36,22 @@ const MapComponent = () => {
     },
   };
 
+  const targetLocation = { lat: 43.7861633, lng: -79.1880963 };
+
+  const targetMarker= {
+    path: window.google.maps.SymbolPath.BACKWARD_CLOSED_ARROW, // Default pin shape
+    fillColor: "green", // Change the fill color to green
+    fillOpacity: 1, // Set full opacity for the fill color
+    strokeColor: "green", // Border color for the marker
+    strokeWeight: 2, // Border thickness
+    scale: 7, // Scale of the marker (size)
+  };
+
+  let centerMarker = mapCenter.current;
+
+  if (attempts.length >= maxAttempts || isSuccessful) {
+    centerMarker = targetLocation;
+  }
   return (
     <div className="">
       <GoogleMap
@@ -45,7 +61,7 @@ const MapComponent = () => {
           minHeight: "200px",
           borderRadius: "12px",
         }}
-        center={mapCenter.current}
+        center={centerMarker}
         clickableIcons={false}
         extraMapTypes={[]}
         zoom={zoom}
@@ -55,7 +71,11 @@ const MapComponent = () => {
         {markerPosition && (
           <Marker position={markerPosition} draggable={false} />
         )}
+        {(attempts.length >= maxAttempts || isSuccessful) && (
+          <Marker position={targetLocation} icon={targetMarker} draggable={false} />
+        )}
       </GoogleMap>
+      
     </div>
   );
 };
