@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
   Calendar,
-  Timer,
   ImagePlus,
   ChartColumn,
   GalleryHorizontalEnd,
@@ -30,12 +29,6 @@ export default function SidebarMenuComponent({
       url: "/daily-challenge",
       icon: Calendar,
       accountRequired: false,
-    },
-    {
-      title: "Race",
-      url: "/race",
-      icon: Timer,
-      accountRequired: true,
     },
     {
       title: "Collections",

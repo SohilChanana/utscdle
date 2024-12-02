@@ -102,7 +102,7 @@ export default function CheckDistanceButton({
 
     addAttempt(distance);
 
-    if (distance <= 20) {
+    if (distance <= 15) {
       setSuccessOpen(true);
       stopTimer();
       localStorage.setItem("finalTime", timeElapsed.toString());

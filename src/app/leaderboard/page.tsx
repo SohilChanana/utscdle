@@ -1,7 +1,15 @@
 import { MapPin } from "lucide-react";
 import { LeaderboardTabs } from "@/components/leaderboard/leaderboardTabs";
+import { auth } from "@/lib/auth";
 
-export default function Leaderboard() {
+export default async function Leaderboard() {
+  const session = await auth();
+  const isAuthenticated = !!session;
+  if (!isAuthenticated) {
+    return (
+      <div className="mt-10 text-xl">Please sign in to view this page</div>
+    );
+  }
   return (
     <div className="min-h-screen flex flex-col items-center justify-start w-full">
       <div className="pt-4 pb-4 text-center">

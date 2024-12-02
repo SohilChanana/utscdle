@@ -1,8 +1,16 @@
 import { MapPin } from "lucide-react";
 import CardGrid from "@/components/collections/cardGrid";
 import CollectionsHowToPlayPopup from "@/components/collections/collectionsHowToPlay";
+import { auth } from "@/lib/auth";
 
-export default function Collections() {
+export default async function Collections() {
+  const session = await auth();
+  const isAuthenticated = !!session;
+  if (!isAuthenticated) {
+    return (
+      <div className="mt-10 text-xl">Please sign in to view this page</div>
+    );
+  }
   return (
     <div className="min-h-screen flex flex-col items-center w-full">
       <CollectionsHowToPlayPopup />
@@ -18,7 +26,9 @@ export default function Collections() {
       </div>
 
       <CardGrid />
-      <p className="mt-3 text-lg text-gray-300">More collections coming soon...</p>
+      <p className="mt-3 text-lg text-gray-300">
+        More collections coming soon...
+      </p>
     </div>
   );
 }

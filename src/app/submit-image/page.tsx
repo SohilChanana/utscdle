@@ -4,8 +4,16 @@ import { Label } from "../../components/ui/label";
 import { MapSIProvider } from "../../hooks/mapSIProvider";
 import { MapComponentSI } from "../../components/mapSI";
 import { SubmitImageButton } from "../../components/submitImageButton";
+import { auth } from "@/lib/auth";
 
-export default function SubmitImage() {
+export default async function SubmitImage() {
+  const session = await auth();
+  const isAuthenticated = !!session;
+  if (!isAuthenticated) {
+    return (
+      <div className="mt-10 text-xl">Please sign in to view this page</div>
+    );
+  }
   return (
     <div className="min-h-screen flex flex-col items-center justify-start w-full">
       <div className="pt-4 pb-4 text-center">

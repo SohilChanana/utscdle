@@ -106,7 +106,7 @@ export function CollectionsProvider({
 
   // Determine success state
   const isSuccessful =
-    attempts.length > 0 && attempts[attempts.length - 1].distance <= 20;
+    attempts.length > 0 && attempts[attempts.length - 1].distance <= 15;
 
   return (
     <CollectionsContext.Provider

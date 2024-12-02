@@ -117,7 +117,7 @@ const CollectionMapComponent = () => {
             />
             <Circle
               center={targetLocation}
-              radius={10} // 10 meters radius
+              radius={15} // 15 meters radius
               options={{
                 fillColor: "#00FF00",
                 fillOpacity: 0.35,

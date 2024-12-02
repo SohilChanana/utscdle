@@ -15,8 +15,9 @@ import { auth } from "@/lib/auth";
 
 export default async function AccountInfo() {
     const session = await auth();
-    if (!session) {
-        return <div>Loading...</div>;
+    const isAuthenticated = !!session;
+    if (!isAuthenticated) {
+        return <div className="mt-10 text-xl">Please sign in to view this page</div>;
     }
     return (
         <div className="min-h-screen flex flex-col items-center justify-start w-full">
