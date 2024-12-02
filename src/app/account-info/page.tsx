@@ -11,14 +11,13 @@ import {
 } from "../../components/ui/card"
 import { Input } from "../../components/ui/input"
 import { Label } from "../../components/ui/label"
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
-} from "../../components/ui/tabs"
+import { auth } from "@/lib/auth";
 
-export default function DailyChallenge() {
+export default async function AccountInfo() {
+    const session = await auth();
+    if (!session) {
+        return <div>Loading...</div>;
+    }
     return (
         <div className="min-h-screen flex flex-col items-center justify-start w-full">
             <div className="pt-4 pb-4 text-center">
@@ -26,68 +25,31 @@ export default function DailyChallenge() {
                     <MapPin className="h-10 w-10 text-white sm:mr-4 mr-0" />
                     <h1 className="text-3xl font-bold text-white sm:text-4xl">UTSCdle</h1>
                 </div>
+                <p className="mt-3 text-xl font-bold text-gray-300">Account Information</p>
             </div>
-            <Tabs defaultValue="account" className="w-[400px]">
-                <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="account">Account</TabsTrigger>
-                    <TabsTrigger value="password">Password</TabsTrigger>
-                </TabsList>
-                <TabsContent value="account">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Account</CardTitle>
-                            <CardDescription>
-                                Edit your account information here.
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent className="space-y-2">
-                            <div className="space-y-1">
-                                <Label htmlFor="name">Name</Label>
-                                <Input id="name" defaultValue="Domingo" />
-                            </div>
-                            <div className="space-y-1">
-                                <Label htmlFor="username">Username</Label>
-                                <Input id="username" defaultValue="@Domingo" />
-                            </div>
-                            <div className="space-y-1">
-                                <Label htmlFor="email">Email</Label>
-                                <Input id="email" defaultValue="espresso@gmail.com" />
-                            </div>
-                        </CardContent>
-                        <CardFooter>
-                            <Button>Save changes</Button>
-                        </CardFooter>
-                    </Card>
-                </TabsContent>
-                <TabsContent value="password">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Password</CardTitle>
-                            <CardDescription>
-                                Change your password here.
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent className="space-y-2">
-                            <div className="space-y-1">
-                                <Label htmlFor="current">Current password</Label>
-                                <Input id="current" type="password" />
-                            </div>
-                            <div className="space-y-1">
-                                <Label htmlFor="new">New password</Label>
-                                <Input id="new" type="password" />
-                            </div>
-                            <div className="space-y-1">
-                                <Label htmlFor="confirmNew">Confirm new password</Label>
-                                <Input id="confirmNew" type="password" />
-                            </div>
-                        </CardContent>
-                        <CardFooter>
-                            <Button>Save password</Button>
-                        </CardFooter>
-                    </Card>
-                </TabsContent>
-            </Tabs>
+            <div className="w-full sm:w-1/2">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Account</CardTitle>
+                        <CardDescription>
+                            Edit your account information here.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                        <div className="space-y-1">
+                            <Label htmlFor="username">Username</Label>
+                            <Input id="username" defaultValue={session.user.name ?? ''} disabled />
+                        </div>
+                        <div className="space-y-1">
+                            <Label htmlFor="email">Email</Label>
+                            <Input id="email" defaultValue={session.user.email ?? ''} disabled />
+                        </div>
+                    </CardContent>
+                    <CardFooter>
+                        <Button>Save changes</Button>
+                    </CardFooter>
+                </Card>
+            </div>
         </div>
-
     )
 }
