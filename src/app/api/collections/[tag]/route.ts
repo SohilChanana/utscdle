@@ -28,19 +28,17 @@ export async function GET(
         { status: 401 }
       );
     }
-
-    let matchCondition: any;
+    // If the tag is "all", fetch all images that are daily eligible, otherwise fetch images with the specified tag that are daily eligible
+    let matchCondition: { dailyEligible: boolean; tags?: string };
     if (tag === "all") {
-      // If tag is "all", get all images where dailyEligible is true
       matchCondition = { dailyEligible: true };
     } else {
-      // Otherwise, filter by tag and ensure dailyEligible is true
       matchCondition = { tags: tag, dailyEligible: true };
     }
 
     const images = await Image.aggregate([
       { $match: matchCondition },
-      { $sample: { size: 100 } }, 
+      { $sample: { size: 100 } },
     ]);
 
     // Return the list of images

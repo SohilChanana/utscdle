@@ -39,6 +39,7 @@ export default function CheckDistanceButton({
     return R * c;
   };
 
+  // Calculate the score based on the final time and number of guesses
   const calculateScore = (
     finalTime: number,
     numberOfGuesses: number
@@ -46,27 +47,22 @@ export default function CheckDistanceButton({
     // Ensure finalTime is not negative
     finalTime = Math.max(0, finalTime);
 
-    // Calculate the score based on the number of guesses
     let guessesScore = 600 - (numberOfGuesses - 1) * 200;
-    guessesScore = Math.max(200, guessesScore); // Minimum guessesScore is 200
+    guessesScore = Math.max(200, guessesScore); 
 
-    // Calculate the time score
     let timeScore = 0;
     if (finalTime <= 300) {
-      // For times less than or equal to 5 minutes
-      timeScore = 100 + (300 - finalTime); // Ranges from 100 to 400
+      timeScore = 100 + (300 - finalTime);
     } else {
-      // For times greater than 5 minutes
-      timeScore = 100; // Constant minimum time score
+      timeScore = 100;
     }
 
-    // Total score is the sum of guessesScore and timeScore
     const totalScore = guessesScore + timeScore;
 
-    // Ensure totalScore does not exceed 1000
     return Math.min(totalScore, 1000);
   };
 
+  // Submit the score to the database
   const submitScore = async (
     date: Date,
     score: number,
@@ -106,7 +102,7 @@ export default function CheckDistanceButton({
 
     addAttempt(distance);
 
-    if (distance <= 10) {
+    if (distance <= 20) {
       setSuccessOpen(true);
       stopTimer();
       localStorage.setItem("finalTime", timeElapsed.toString());

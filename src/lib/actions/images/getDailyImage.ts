@@ -1,4 +1,4 @@
-import Image from "@/lib/models/image"; // Replace with the correct path to your Image model
+import Image from "@/lib/models/image";
 import { connectDB } from "@/utils/mongoosedb";
 import { startOfDay, endOfDay } from "date-fns";
 
@@ -25,7 +25,7 @@ export const getDailyImage = async () => {
         },
         {
           sort: { uploadDate: 1 }, // Sort by earliest upload
-          new: true, // Return the updated document
+          new: true,
         }
       ).exec();
     }
@@ -39,7 +39,7 @@ export const getDailyImage = async () => {
         },
         {
           sort: { uploadDate: 1 }, // Sort by earliest upload
-          new: true, // Return the updated document
+          new: true,
         }
       ).exec();
     }

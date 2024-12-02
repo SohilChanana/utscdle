@@ -18,6 +18,7 @@ export default function Collections() {
       </div>
 
       <CardGrid />
+      <p className="mt-3 text-lg text-gray-300">More collections coming soon...</p>
     </div>
   );
 }

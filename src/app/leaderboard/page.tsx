@@ -1,7 +1,7 @@
 import { MapPin } from "lucide-react";
 import { LeaderboardTabs } from "@/components/leaderboard/leaderboardTabs";
 
-export default function DailyChallenge() {
+export default function Leaderboard() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-start w-full">
       <div className="pt-4 pb-4 text-center">

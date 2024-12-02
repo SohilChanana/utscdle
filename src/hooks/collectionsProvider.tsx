@@ -40,7 +40,6 @@ const CollectionsContext = createContext<CollectionsContextType | undefined>(
   undefined
 );
 
-// Updated interface to include tagFilter
 interface CollectionsProviderProps {
   tagFilter: string;
   children: ReactNode;
@@ -54,7 +53,6 @@ export function CollectionsProvider({
   const [currentImage, setCurrentImage] = useState<number>(0);
   const [currentImageData, setCurrentImageData] = useState<Image | null>(null);
 
-  // Per-image state
   const [markerPosition, setMarkerPosition] = useState<MarkerPosition>(null);
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const maxAttempts = 3;
@@ -87,8 +85,8 @@ export function CollectionsProvider({
   const resetStateForImage = useCallback(() => {
     if (currentImage >= 0 && currentImage < images.length) {
       setCurrentImageData(images[currentImage]);
-      setMarkerPosition(null); // Reset marker position
-      setAttempts([]); // Reset attempts
+      setMarkerPosition(null); 
+      setAttempts([]); 
     }
   }, [currentImage, images]);
 

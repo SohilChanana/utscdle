@@ -71,8 +71,6 @@ export function PersonalChart({ chartData, selectedRange }: PersonalChartProps) 
                 tickLine={false}
                 axisLine={false}
                 tickMargin={8}
-                // Optionally format ticks if needed
-                // tickFormatter={(value) => value.slice(0, 8)}
               />
               <Tooltip
                 cursor={true}

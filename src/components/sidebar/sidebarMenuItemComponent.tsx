@@ -23,7 +23,7 @@ export default function SidebarMenuComponent({
 }) {
   const pathname = usePathname();
 
-  // Define the items array within the Client Component
+  // Define the items array
   const items = [
     {
       title: "Daily Challenge",

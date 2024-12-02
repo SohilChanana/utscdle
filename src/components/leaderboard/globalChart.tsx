@@ -56,8 +56,8 @@ export function GlobalChart({ chartData }: GlobalChartProps) {
             <BarChart
               data={chartData}
               layout="vertical"
-              width={500} // Adjust width as needed
-              height={400} // Adjust height as needed
+              width={500}
+              height={400}
               margin={{
                 top: 20,
                 right: 40,
@@ -79,19 +79,12 @@ export function GlobalChart({ chartData }: GlobalChartProps) {
                 content={<ChartTooltipContent indicator="line" />}
               />
               <Bar dataKey="score" fill="#e21d48" radius={5}>
-                {/* <LabelList
-                  dataKey="username"
-                  position="insideLeft"
-                  offset={8}
-                  className="fill-[--color-label]"
-                  fontSize={14} // Adjust font size as needed
-                /> */}
                 <LabelList
                   dataKey="score"
                   position="right"
                   offset={8}
                   className="fill-foreground"
-                  fontSize={14} // Adjust font size as needed
+                  fontSize={14}
                 />
               </Bar>
             </BarChart>
