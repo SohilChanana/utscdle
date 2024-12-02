@@ -65,7 +65,7 @@ export default function SidebarMenuComponent({
   return (
     <SidebarMenu>
       {filteredItems.map((item) => {
-        const isActive = pathname === item.url;
+        const isActive = pathname.startsWith(item.url);
         const Icon = item.icon;
 
         return (

@@ -14,19 +14,19 @@ export default function DailyChallenge() {
 					<MapPin className="h-10 w-10 text-white sm:mr-4 mr-0" />
 					<h1 className="text-3xl font-bold text-white sm:text-4xl">UTSCdle</h1>
 				</div>
-				<p className="mt-3 text-lg text-gray-300">
-					Submit an image!
+				<p className="mt-3 text-lg text-gray-300 font-bold">
+					Submit an Image
 				</p>
 			</div>
 			<div className="flex flex-col w-full items-center p-4 bg-[#424242] rounded-xl mb-4 mr-6 mt-5">
 				<MapSIProvider>
 					<div className="mb-5">
-						Select the image's location on the map
+						Select the image&apos;s location on the map
 					</div>
-					<div className="w-full sm:w-[500px] h-[500px] mt-4 sm:mt-0">
+					<div className="w-full sm:w-1/2 mt-4 sm:mt-0">
 						<MapComponentSI />
 					</div>
-					<div className="flex flex-col items-center">
+					<div className="flex flex-col items-center mt-4">
 						<SubmitImageButton />
 					</div>
 					
