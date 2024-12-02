@@ -23,8 +23,8 @@ export default function RootLayout({
           <div className="flex h-full w-screen">
             {/* Sidebar */}
             <AppSidebar />
-            <div className="flex-none w-min bg-zinc-800">
-              <SidebarTrigger className="p-2 m-1" />
+            <div className="relative flex-none w-min bg-zinc-800">
+              <SidebarTrigger className="absolute top-0 left-0 p-2 m-1" />
             </div>
             {/* Main Content */}
             <div className="flex-1 flex items-start justify-center bg-zinc-800 w-full">

@@ -18,7 +18,7 @@ export default function DailyChallenge() {
 					Submit an Image
 				</p>
 			</div>
-			<div className="flex flex-col w-full items-center p-4 bg-[#424242] rounded-xl mb-4 mr-6 mt-5">
+			<div className="flex flex-col w-full items-center p-4 bg-[#424242] rounded-xl m-4">
 				<MapSIProvider>
 					<div className="mb-5">
 						Select the image&apos;s location on the map

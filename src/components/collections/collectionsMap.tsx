@@ -18,6 +18,7 @@ const CollectionMapComponent = () => {
     maxAttempts,
     isSuccessful,
     currentImageData,
+    
   } = useCollectionsContext();
 
   const mapCenter = useRef({ lat: 43.78427807639849, lng: -79.18671957505939 });
