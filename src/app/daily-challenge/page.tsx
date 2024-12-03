@@ -12,7 +12,7 @@ import GameOverlay from "@/components/gameOverlay";
 import Link from "next/link";
 
 export default async function DailyChallenge() {
-  const currentDate = () => new Date().toDateString();
+  const currentDate = () => new Date().toLocaleDateString();
   const image = await getDailyImage();
 
   return (
