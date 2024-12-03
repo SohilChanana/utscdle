@@ -20,7 +20,7 @@ SSH into the VM:
 
 ```ssh 34.130.208.104```
 
-On the VM, load the two images into Docker:
+On the VM, load the new image into Docker:
 
 ```docker load -i utscdle.tar.gz```
 
