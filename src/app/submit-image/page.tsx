@@ -16,7 +16,7 @@ export default function SubmitImage() {
         </div>
         <p className="mt-3 text-xl text-gray-300 font-bold">Submit an Image</p>
       </div>
-      <div className="flex flex-col w-full items-center p-4 bg-[#424242] rounded-xl m-4">
+      <div className="flex flex-col w-full items-center p-4 bg-[#424242] rounded-xl my-4">
         <MapSIProvider>
           <div className="flex flex-col items-center mt-4 w-full">
             <SubmitImageButton />
