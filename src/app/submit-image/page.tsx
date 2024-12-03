@@ -6,15 +6,7 @@ import { MapComponentSI } from "../../components/mapSI";
 import { SubmitImageButton } from "../../components/submitImageButton";
 import { auth } from "@/lib/auth";
 
-export default async function SubmitImage() {
-  const session = await auth();
-  const isAuthenticated = !!session;
-  if (!isAuthenticated) {
-    return (
-      <div className="mt-10 text-xl">Please sign in to view this page</div>
-    );
-  }
-
+export default function SubmitImage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-start w-full">
       <div className="pt-4 pb-4 text-center">
@@ -24,11 +16,13 @@ export default async function SubmitImage() {
         </div>
         <p className="mt-3 text-xl text-gray-300 font-bold">Submit an Image</p>
       </div>
-      <MapSIProvider>
-        <div className="flex flex-col w-full items-center p-4 bg-[#424242] rounded-xl mb-4 mr-6 mt-5">
-          <SubmitImageButton />
-        </div>
-      </MapSIProvider>
+      <div className="flex flex-col w-full items-center p-4 bg-[#424242] rounded-xl m-4">
+        <MapSIProvider>
+          <div className="flex flex-col items-center mt-4 w-full">
+            <SubmitImageButton />
+          </div>
+        </MapSIProvider>
+      </div>
     </div>
   );
 }

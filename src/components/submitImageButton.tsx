@@ -68,13 +68,13 @@ const SubmitImageButton: React.FC = () => {
   return (
     <div className="flex flex-col w-full items-center p-4 bg-[#424242] rounded-xl mb-4 mr-6 mt-5">
       {!submitted && (
-        <MapSIProvider>
+        <>
           <div className="mb-5">Select the image&apos;s location on the map</div>
-          <div className="w-full sm:w-[500px] h-[500px] mt-4 sm:mt-0">
+          <div className="w-full sm:w-1/2 mt-4 sm:mt-0">
             <MapComponentSI />
           </div>
           <div className="flex flex-col items-center">
-            <div className="grid w-full max-w-sm items-center gap-1.5 mb-5">
+            <div className="grid w-full max-w-sm items-center gap-1.5 my-5">
               <Label htmlFor="picture">Select image from device</Label>
               <Input id="picture" type="file" onChange={handleImageChange} />
             </div>
@@ -83,7 +83,7 @@ const SubmitImageButton: React.FC = () => {
               {loading ? "Uploading..." : "Submit image"}
             </Button>
           </div>
-        </MapSIProvider>
+        </>
       )}
 
       {/* Show this instead when image successfully submits */}
