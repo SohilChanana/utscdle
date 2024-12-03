@@ -69,7 +69,7 @@ const SubmitImageButton: React.FC = () => {
     <div className="flex flex-col w-full items-center p-4 bg-[#424242] rounded-xl mb-4 mr-6 mt-5">
       {!submitted && (
         <MapSIProvider>
-          <div className="mb-5">Select the image's location on the map</div>
+          <div className="mb-5">Select the image&apos;s location on the map</div>
           <div className="w-full sm:w-[500px] h-[500px] mt-4 sm:mt-0">
             <MapComponentSI />
           </div>
@@ -90,7 +90,7 @@ const SubmitImageButton: React.FC = () => {
       {submitted && (
         <div className="mt-4">
           <p>
-            Thank you for submitting your image! We'll be reviewing it shortly.
+            Thank you for submitting your image! We&apos;ll be reviewing it shortly.
           </p>
         </div>
       )}
