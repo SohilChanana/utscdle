@@ -6,6 +6,7 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { useState } from "react";
 import { MapComponentSI } from "./mapSI";
+import { Upload } from "lucide-react";
 
 const encodeImage = (file: File) =>
   new Promise((resolve, reject) => {
@@ -43,7 +44,7 @@ const SubmitImageButton: React.FC = () => {
       formData.append("markerPosition", JSON.stringify(markerPosition)); // Add marker position
 
       try {
-        const response = await fetch("/api/email", {
+        const response = await fetch("/api/email/uploadImage", {
           method: "POST",
           body: formData,
         });
@@ -57,6 +58,7 @@ const SubmitImageButton: React.FC = () => {
         }
       } catch (error) {
         console.error("Error submitting image:", error);
+
       } finally {
         setLoading(false);
       }
@@ -69,7 +71,9 @@ const SubmitImageButton: React.FC = () => {
     <div className="flex flex-col w-full items-center p-4 bg-[#424242] rounded-xl mb-4 mr-6 mt-5">
       {!submitted && (
         <>
-          <div className="mb-5">Select the image&apos;s location on the map</div>
+          <div className="mb-5">
+            Select the image&apos;s location on the map
+          </div>
           <div className="w-full sm:w-1/2 mt-4 sm:mt-0">
             <MapComponentSI />
           </div>
@@ -88,9 +92,21 @@ const SubmitImageButton: React.FC = () => {
 
       {/* Show this instead when image successfully submits */}
       {submitted && (
-        <div className="mt-4">
+        <div>
+          <Button
+            asChild
+            className="fixed top-4 right-4 z-50"
+            onClick={() => setSubmitted(false)}
+          >
+            <div className="flex items-center space-x-2">
+              <Upload className="w-4 h-4" />
+              <span className="hidden sm:inline">Submit another image</span>
+            </div>
+          </Button>
+
           <p>
-            Thank you for submitting your image! We&apos;ll be reviewing it shortly.
+            Thank you for submitting your image! We&apos;ll be reviewing it
+            shortly.
           </p>
         </div>
       )}
