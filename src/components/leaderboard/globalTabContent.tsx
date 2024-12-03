@@ -36,7 +36,7 @@ export function GlobalTabContent() {
         try {
           const dateString = format(selectedDate, "yyyy-MM-dd");
           const response = await fetch(`/api/scores/getTopTen/${dateString}`, {
-            credentials: "include", // Include cookies if needed for auth
+            credentials: "include",
           });
           if (!response.ok) {
             throw new Error(`Error: ${response.status} ${response.statusText}`);

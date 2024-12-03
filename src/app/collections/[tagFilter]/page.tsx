@@ -2,6 +2,8 @@ import { MapPin } from "lucide-react";
 import { cards } from "@/components/collections/cardData";
 import CollectionsContent from "@/components/collections/collectionsContent";
 import { ExitCollectionsButton } from "@/components/collections/exitCollectionsButton";
+import CollectionsHowToPlayPopup from "@/components/collections/collectionsHowToPlay";
+import { auth } from "@/lib/auth";
 
 interface CollectionsProps {
   tagFilter: string;
@@ -12,6 +14,13 @@ export default async function Collections({
 }: {
   params: Promise<CollectionsProps>;
 }) {
+  const session = await auth();
+  const isAuthenticated = !!session;
+  if (!isAuthenticated) {
+    return (
+      <div className="mt-10 text-xl">Please sign in to view this page</div>
+    );
+  }
   const { tagFilter } = await params;
 
   const card = cards.find((card) => card.tagFilter === tagFilter);
@@ -19,6 +28,7 @@ export default async function Collections({
   return (
     <div className="min-h-screen flex flex-col items-center w-full">
       <ExitCollectionsButton />
+      <CollectionsHowToPlayPopup />
       <div className="pt-4 pb-4 text-center items-center justify-start">
         <div className="flex flex-col sm:flex-row items-center justify-center">
           <MapPin className="h-10 w-10 text-white sm:mr-4 mr-0" />

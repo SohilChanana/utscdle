@@ -46,7 +46,7 @@ export default async function DailyChallenge() {
         {/* Image and Map Section */}
         <GameOverlay>
           <MapProvider>
-            <div className="flex flex-col sm:flex-row sm:space-x-6 w-full items-center p-4 bg-[#424242] rounded-xl mb-4 mr-6">
+            <div className="flex flex-col sm:flex-row sm:space-x-6 w-full items-center p-4 bg-[#424242] rounded-xl mb-4 mx-4">
               {/* Pixelated Image */}
               <div className="w-full sm:w-1/2">
                 <PixelatedImage

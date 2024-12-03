@@ -8,7 +8,6 @@ export default function Timer() {
   const [finalTime, setFinalTime] = useState<string | null>(null);
 
   useEffect(() => {
-    // Access localStorage only on the client side
     const storedFinalTime = localStorage.getItem("finalTime");
     setFinalTime(storedFinalTime);
   }, []);

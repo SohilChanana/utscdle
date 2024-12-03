@@ -11,11 +11,7 @@ export const updateScore = async (
   try {
     await connectDB();
 
-    // Get today's local date in YYYY-MM-DD format
-    // const now = new Date();
-    // const localDate = now.toLocaleDateString("en-CA"); // Format: YYYY-MM-DD (consistent for MongoDB)
-
-    // Check if a score entry exists for this user and local date
+    // Check if a score entry exists for this user and date
     let scoreEntry = await Score.findOne({
       userId: userId,
       date: date,

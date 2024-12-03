@@ -51,7 +51,7 @@ export default function CollectionsCheckDistanceButton() {
 
     addAttempt(distance);
 
-    if (distance <= 10) {
+    if (distance <= 15) {
       setSuccessOpen(true);
     } else if (attempts.length === maxAttempts - 1) {
       setTimeout(() => setFailureOpen(true), 500);

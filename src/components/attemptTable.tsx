@@ -32,7 +32,7 @@ const AttemptTable: React.FC = () => {
       </TableHeader>
       <TableBody>
         {attempts.map((attempt, index) => (
-          <TableRow key={index} className={`${rowColors(Number(attempt.distance.toFixed(2)), 10)}`}>
+          <TableRow key={index} className={`${rowColors(Number(attempt.distance.toFixed(2)), 15)}`}>
             <TableCell className="font-medium rounded-s-full">{attempt.attempt}</TableCell>
             <TableCell className="font-medium text-right rounded-e-full">
               {attempt.distance.toFixed(2)} m

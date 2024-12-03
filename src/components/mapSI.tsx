@@ -36,7 +36,7 @@ const MapComponentSI = () => {
 			strictBounds: false,
 		},
 	};
-	let displayCenter = mapCenter.current;
+	const displayCenter = mapCenter.current;
 
 	if (markerPosition) {
 		localStorage.setItem("setLocation", JSON.stringify(markerPosition));

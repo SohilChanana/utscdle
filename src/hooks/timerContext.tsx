@@ -75,4 +75,3 @@ export const useTimer = () => {
   }
   return context;
 }
-// export default TimerContext;

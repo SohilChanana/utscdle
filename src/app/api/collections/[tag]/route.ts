@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import { connectDB } from "@/utils/mongoosedb";
-import Image from "@/lib/models/image"; // Define an Image model in your project
+import Image from "@/lib/models/image";
 import { auth } from "@/lib/auth";
 
 export async function GET(
@@ -9,12 +9,10 @@ export async function GET(
   { params }: { params: Promise<{ tag: string }> }
 ) {
   try {
-    // Connect to the database
     await connectDB();
 
     const tag = (await params).tag;
 
-    // Validate the tag parameter
     if (!tag) {
       return NextResponse.json(
         { success: false, message: "Tag parameter is required." },
@@ -30,18 +28,21 @@ export async function GET(
         { status: 401 }
       );
     }
+    // If the tag is "all", fetch all images that are daily eligible, otherwise fetch images with the specified tag that are daily eligible
+    let matchCondition: { dailyEligible: boolean; tags?: string };
+    if (tag === "all") {
+      matchCondition = { dailyEligible: true };
+    } else {
+      matchCondition = { tags: tag, dailyEligible: true };
+    }
 
-    // Query the database for images with the given tag and shuffle results
     const images = await Image.aggregate([
-      { $match: { tags: tag } }, // Filter documents containing the specified tag
-      { $sample: { size: 100 } }, // Shuffle the results
+      { $match: matchCondition },
+      { $sample: { size: 100 } },
     ]);
 
     // Return the list of images
-    return NextResponse.json(
-      { success: true, data: images },
-      { status: 200 }
-    );
+    return NextResponse.json({ success: true, data: images }, { status: 200 });
   } catch (error) {
     console.error("Error fetching images:", error);
     return NextResponse.json(

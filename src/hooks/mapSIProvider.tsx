@@ -13,7 +13,6 @@ type MapSIContextType = {
 
 const MapSIContext = createContext<MapSIContextType | undefined>(undefined);
 
-// Map2 Provider Component
 export function MapSIProvider({ children }: { children: ReactNode }) {
 	const [isMounted, setIsMounted] = useState(false);
 
@@ -61,7 +60,6 @@ export function MapSIProvider({ children }: { children: ReactNode }) {
 	);
 }
 
-// Custom hook to use the Map2 context
 export const useMapSIContext = () => {
 	const context = useContext(MapSIContext);
 	if (!context) {

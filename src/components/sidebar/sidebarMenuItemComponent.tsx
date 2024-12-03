@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
   Calendar,
-  Timer,
   ImagePlus,
   ChartColumn,
   GalleryHorizontalEnd,
@@ -23,19 +22,13 @@ export default function SidebarMenuComponent({
 }) {
   const pathname = usePathname();
 
-  // Define the items array within the Client Component
+  // Define the items array
   const items = [
     {
       title: "Daily Challenge",
       url: "/daily-challenge",
       icon: Calendar,
       accountRequired: false,
-    },
-    {
-      title: "Race",
-      url: "/race",
-      icon: Timer,
-      accountRequired: true,
     },
     {
       title: "Collections",
@@ -65,7 +58,7 @@ export default function SidebarMenuComponent({
   return (
     <SidebarMenu>
       {filteredItems.map((item) => {
-        const isActive = pathname === item.url;
+        const isActive = pathname.startsWith(item.url);
         const Icon = item.icon;
 
         return (

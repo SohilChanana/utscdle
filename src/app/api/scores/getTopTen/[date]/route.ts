@@ -103,7 +103,7 @@ export async function GET(
     for (let i = 0; i < aggregatedScores.length; i++) {
       if (aggregatedScores[i].userId.equals(userId)) {
         userScore = aggregatedScores[i].totalScore;
-        userRank = i + 1; // Ranks are 1-indexed
+        userRank = i + 1;
         break;
       }
     }

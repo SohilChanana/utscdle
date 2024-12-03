@@ -19,11 +19,10 @@ import { PersonalChart } from "./personalChart";
 export function PersonalTabContent() {
   const [selectedRange, setSelectedRange] = useState("week"); // Default to "week"
   const [chartData, setChartData] = useState([]);
-  const [loading, setLoading] = useState(true); // For loading state
-  const [error, setError] = useState<string | null>(null); // For error handling
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Define an async function to fetch data
     const fetchData = async () => {
       setLoading(true);
       setError(null);
