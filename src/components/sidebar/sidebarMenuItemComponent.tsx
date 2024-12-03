@@ -8,6 +8,7 @@ import {
   ImagePlus,
   ChartColumn,
   GalleryHorizontalEnd,
+  BookOpenText,
 } from "lucide-react";
 import {
   SidebarMenu,
@@ -48,6 +49,12 @@ export default function SidebarMenuComponent({
       icon: ImagePlus,
       accountRequired: true,
     },
+    {
+      title: "Credits",
+      url: "/credits",
+      icon: BookOpenText,
+      accountRequired: false,
+    }
   ];
 
   // Filter items based on authentication status
