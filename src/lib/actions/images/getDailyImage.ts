@@ -34,7 +34,7 @@ export const getDailyImage = async () => {
     if (!dailyImage) {
       // Every image has been used, get the earliest used image to cycle
       dailyImage = await Image.findOneAndUpdate(
-        { usedOnDate: { $ne: today },
+        { usedOnDate: { $lt: startOfToday, $gt: endOfToday },
           dailyEligible: true },
         {
           usedOnDate: today, // Update "usedOnDate" to today
