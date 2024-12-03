@@ -15,9 +15,7 @@ export const signUp = async (values: signUpSchema) => {
     await connectDB();
     const userFound = await User.findOne({ email });
     if (userFound) {
-      return {
-        error: "Email already exists!",
-      };
+      throw new Error("User already exists!")
     }
     const hashedPassword = await saltAndHashPassword(password);
     const user = new User({

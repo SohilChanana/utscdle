@@ -17,9 +17,12 @@ import { Input } from "@/components/ui/input";
 import { signUpSchema } from "@/lib/models/zod";
 import { signUp } from "@/lib/actions/auth/signUp";
 import { SignUpProps } from "@/components/auth/props";
-import { sendWelcomeEmail } from "../../lib/actions/email/sendWelcomeEmail";
+import { useRef } from "react";
+import { cn } from "@/lib/utils";
 
 export function SignUpForm({ setOpen }: SignUpProps) {
+  const errorExistingUserRef = useRef<HTMLParagraphElement>(null);
+
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -55,6 +58,10 @@ export function SignUpForm({ setOpen }: SignUpProps) {
 
       setOpen(false); // Close the form/modal
     } catch (error) {
+      if (errorExistingUserRef.current) {
+        errorExistingUserRef.current.innerText =
+          "We couldn't find an account that matches those credentials.";
+      }
       console.error("Sign-up error:", error);
     }
   
@@ -129,6 +136,10 @@ export function SignUpForm({ setOpen }: SignUpProps) {
               <FormMessage />
             </FormItem>
           )}
+        />
+        <p
+          ref={errorExistingUserRef}
+          className={cn("text-[0.8rem] font-medium text-destructive")}
         />
         <Button type="submit">Sign Up</Button>
       </form>
