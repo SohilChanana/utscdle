@@ -1,15 +1,21 @@
+"use server";
 import { Storage } from "@google-cloud/storage";
 import { v4 as uuidv4 } from "uuid";
 import Image from "@/lib/models/image";
 import { connectDB } from "@/utils/mongoosedb";
+import fs from "node:fs";
+import { detectContentType } from "next/dist/server/image-optimizer";
 
 // Configure Google Cloud Storage
-const storage = new Storage({ projectId: "utscdle" });
+const storage = new Storage({
+  projectId: "utscdle",
+  keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+});
 const BUCKET_NAME = "utscdle-images";
 
 interface UploadImageInput {
-  file: Buffer;
-  mimeType: `image/${"png" | "jpeg"}`;
+  file: File;
+  mimeType: string;
   coordinates: { lat: number; lng: number };
   dailyEligible?: boolean;
   description?: string;
@@ -37,7 +43,7 @@ export async function uploadImage({
     const image = bucket.file(uniqueId);
 
     // Write the file buffer to the bucket
-    await image.save(file, { metadata: { contentType: mimeType } });
+    image.save(Buffer.from(await file.arrayBuffer()), { metadata: { contentType: mimeType }});
 
     // Get the public URL of the uploaded file
     const publicUrl = `https://storage.googleapis.com/${BUCKET_NAME}/${uniqueId}`;
@@ -57,7 +63,7 @@ export async function uploadImage({
     return {
       success: true,
       message: "Image uploaded and record created successfully.",
-      imageId: newImage._id,
+      imageId: JSON.stringify(newImage._id),
     };
   } catch (error) {
     console.error("Error uploading image:", error);
