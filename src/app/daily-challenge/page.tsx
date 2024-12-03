@@ -9,6 +9,9 @@ import CheckDistanceButton from "@/components/confirmButton";
 import HowToPlayButton from "@/components/howToPlayButton";
 import Timer from "@/components/timer";
 import GameOverlay from "@/components/gameOverlay";
+import { sendScheduledEmail } from "../../lib/actions/email/sendDailyEmails";
+import Credits from "../credits/page";
+import Link from 'next/link';
 
 export default async function DailyChallenge() {
   const currentDate = () => new Date().toDateString();
@@ -25,10 +28,18 @@ export default async function DailyChallenge() {
               UTSCdle
             </h1>
           </div>
+          <div className="mt-4">
+          
+        </div>
           <p className="mt-3 text-lg text-gray-300">
             Inspired by Geoguessr™ and Wordle™
           </p>
-          <p className="mt-3 text-lg text-gray-300">{currentDate()}</p>
+          <Link href="/credits">
+            <button className="bg-transparent text-white px-4 text-sm rounded">
+              View Credits
+            </button>
+          </Link>
+          <p className="mt-3 text-lg text-gray-300 font-bold">{currentDate()}</p>
           <Timer />
         </div>
 
