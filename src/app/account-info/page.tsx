@@ -32,9 +32,6 @@ export default async function AccountInfo() {
                 <Card>
                     <CardHeader>
                         <CardTitle>Account</CardTitle>
-                        <CardDescription>
-                            Edit your account information here.
-                        </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-2">
                         <div className="space-y-1">
@@ -46,9 +43,6 @@ export default async function AccountInfo() {
                             <Input id="email" defaultValue={session.user.email ?? ''} disabled />
                         </div>
                     </CardContent>
-                    <CardFooter>
-                        <Button>Save changes</Button>
-                    </CardFooter>
                 </Card>
             </div>
         </div>

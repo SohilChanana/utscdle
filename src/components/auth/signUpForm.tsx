@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { signUpSchema } from "@/lib/models/zod";
 import { signUp } from "@/lib/actions/auth/signUp";
 import { SignUpProps } from "@/components/auth/props";
+import { sendWelcomeEmail } from "../../lib/actions/email/sendWelcomeEmail";
 
 export function SignUpForm({ setOpen }: SignUpProps) {
   const form = useForm<z.infer<typeof signUpSchema>>({
@@ -29,10 +30,34 @@ export function SignUpForm({ setOpen }: SignUpProps) {
     },
   });
 
-  function onSubmit(values: z.infer<typeof signUpSchema>) {
+  async function onSubmit(values: z.infer<typeof signUpSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    signUp(values).then(() => setOpen(false));
+    try {
+      // Sign up the user
+      await signUp(values);
+
+      // Send a request to the backend API to send the welcome email
+      const response = await fetch("/api/sendWelcomeEmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userEmail: values.email, username: values.name }), // Send the email to the backend
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        console.log("Welcome email sent!");
+      } else {
+        console.error("Error sending welcome email:", result.message);
+      }
+
+      setOpen(false); // Close the form/modal
+    } catch (error) {
+      console.error("Sign-up error:", error);
+    }
+  
   }
 
   return (
