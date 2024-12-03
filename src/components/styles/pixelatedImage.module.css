@@ -1,0 +1,9 @@
+/* components/PixelatedImage.module.css */
+.pixelatedMask {
+    background-image: url('/path-to-your-image.jpg');
+    background-size: cover;
+    filter: blur(30px);
+    -webkit-mask-image: linear-gradient(to top right, transparent 50%, black 50%);
+    mask-image: linear-gradient(to top right, transparent 50%, black 50%);
+  }
+  
