@@ -6,7 +6,7 @@ import { MapComponentSI } from "../../components/mapSI";
 import { SubmitImageButton } from "../../components/submitImageButton";
 import { auth } from "@/lib/auth";
 
-export default function SubmitImage() {
+export default async function SubmitImage() {
   const session = await auth();
   const isAuthenticated = !!session;
   if (!isAuthenticated) {
