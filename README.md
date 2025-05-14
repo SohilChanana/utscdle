@@ -1,4 +1,9 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/DnqlZtdt)
+# UTSCdle
 
-Project URL https://utscdle.org/
-Video URL https://youtu.be/T4kD7aeCpo0
+## Description
+UTSCdle is a university based Geoguessr-style game where players are shown progressively de-pixelated images of campus locations and must guess their position on a map. Players can view their own personal scores as well as see how they rank competitively.
+
+The project is designed for students of the University of Toronto Scarborough Campus
+
+## Demo Video
+[Video Link](https://youtu.be/T4kD7aeCpo0)
